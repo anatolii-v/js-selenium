@@ -1,0 +1,27 @@
+{
+  "name": "selenium_demo",
+  "version": "1.0.0",
+  "description": "First automation testing project with Selenium WebDriver/JS.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha ./tests/**/*.js --timeout 10000"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OlgaFilili/Selenium_JS.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/OlgaFilili/Selenium_JS/issues"
+  },
+  "homepage": "https://github.com/OlgaFilili/Selenium_JS#readme",
+  "devDependencies": {
+    "axios": "^1.13.2",
+    "chai": "^4.3.10",
+    "chromedriver": "^144.0.1",
+    "mocha": "^10.2.0",
+    "selenium-webdriver": "^4.35.0"
+  }
+}
