@@ -1,13 +1,12 @@
 const { Builder } = require("selenium-webdriver");
 const chrome = require('selenium-webdriver/chrome');
-const chromedriver = require('chromedriver');
 
-let driver; // will be created once
+let driver;
 
 async function createDriver() {
   if (!driver) {
     const options = new chrome.Options();
-    // CI = headless, local= Chrome
+
     if (process.env.CI === 'true') {
       options.addArguments(
         '--headless=new',
@@ -16,16 +15,22 @@ async function createDriver() {
         '--disable-gpu',
         '--window-size=1920,1080'
       );
+      // CI: let Selenium find chromedriver automatically
+      driver = await new Builder()
+        .forBrowser("chrome")
+        .setChromeOptions(options)
+        .build();
+    } else {
+      // Local: use chromedriver from npm package
+      const chromedriver = require('chromedriver');
+      const service = new chrome.ServiceBuilder(chromedriver.path);
+      driver = await new Builder()
+        .forBrowser("chrome")
+        .setChromeOptions(options)
+        .setChromeService(service)
+        .build();
     }
-    const service= new chrome.ServiceBuilder(chromedriver.path);
-    driver = await new Builder()
-      .forBrowser("chrome")
-      .setChromeService(service)
-      .setChromeOptions(options)
-      .build();
   }
-  // Ensure the promise resolves before continuing
-  //await driver.getSession();
   return driver;
 }
 
