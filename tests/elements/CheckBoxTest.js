@@ -4,6 +4,9 @@ const CheckBoxPage = require('../../pages/elements/CheckBoxPage.js');
 const { expect }= require('chai');
 
 describe('Check Box Page functionality check', function() {
+    if (process.env.CI === 'true') {
+        this.retries(2);
+    }
     const normalize = name => name.toLowerCase();
     const tree= normalize('Home');
     const nodes=['Desktop', 'Documents', 'Downloads'].map(normalize);

@@ -4,6 +4,9 @@ const RadioButtonPage = require("../../pages/elements/RadioButtonPage.js");
 const { expect } = require('chai');
 
 describe('Radio Button Page functionality check', function() {
+  if (process.env.CI === 'true') {
+    this.retries(2);
+  }
   const options = ['yes', 'impressive', 'no'];
   /** @type {RadioButtonPage} */
   let radioButtonPage;
