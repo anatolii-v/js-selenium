@@ -3,11 +3,10 @@ const { uniteAndTtrimExtention } = require("../../utils/StringUtils.js");
 const CheckBoxPage = require('../../pages/elements/CheckBoxPage.js');
 const { expect }= require('chai');
 
-describe('Check Box Page functionality check', function() {
-    if (process.env.CI === 'true') {
-        // UI against external demo site is flaky on CI → skip here, run locally
-        this.skip();
-    } else {
+const describeOrSkip = process.env.CI === 'true' ? describe.skip : describe;
+
+describeOrSkip('Check Box Page functionality check', function() {
+    if (process.env.CI !== 'true') {
         this.retries(2);
     }
     const normalize = name => name.toLowerCase();

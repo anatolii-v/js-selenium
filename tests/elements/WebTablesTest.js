@@ -2,10 +2,10 @@ const { getHomePage }= require("../BaseTest.js");
 const WebTablesPage = require('../../pages/elements/WebTablesPage.js');
 const { expect }= require('chai');
 
-describe('Web Tables Page functionality check', function() {
-    if (process.env.CI === 'true') {
-        this.skip();
-    } else {
+const describeOrSkip = process.env.CI === 'true' ? describe.skip : describe;
+
+describeOrSkip('Web Tables Page functionality check', function() {
+    if (process.env.CI !== 'true') {
         this.retries(2);
     }
     /*!!!!!!!!!!!Check the sequence of column headers on the page!!!!!!!!!!

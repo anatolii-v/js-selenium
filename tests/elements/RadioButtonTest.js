@@ -3,10 +3,10 @@ const { capitalizeFirstLetter } = require("../../utils/StringUtils.js");
 const RadioButtonPage = require("../../pages/elements/RadioButtonPage.js");
 const { expect } = require('chai');
 
-describe('Radio Button Page functionality check', function() {
-  if (process.env.CI === 'true') {
-    this.skip();
-  } else {
+const describeOrSkip = process.env.CI === 'true' ? describe.skip : describe;
+
+describeOrSkip('Radio Button Page functionality check', function() {
+  if (process.env.CI !== 'true') {
     this.retries(2);
   }
   const options = ['yes', 'impressive', 'no'];
