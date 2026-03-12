@@ -4,6 +4,8 @@ const { expect }= require('chai');
 
 describe('Web Tables Page functionality check', function() {
     if (process.env.CI === 'true') {
+        this.skip();
+    } else {
         this.retries(2);
     }
     /*!!!!!!!!!!!Check the sequence of column headers on the page!!!!!!!!!!

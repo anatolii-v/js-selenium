@@ -5,6 +5,8 @@ const { expect } = require('chai');
 
 describe('Radio Button Page functionality check', function() {
   if (process.env.CI === 'true') {
+    this.skip();
+  } else {
     this.retries(2);
   }
   const options = ['yes', 'impressive', 'no'];

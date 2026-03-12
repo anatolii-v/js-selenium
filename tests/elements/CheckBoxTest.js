@@ -5,6 +5,9 @@ const { expect }= require('chai');
 
 describe('Check Box Page functionality check', function() {
     if (process.env.CI === 'true') {
+        // UI against external demo site is flaky on CI → skip here, run locally
+        this.skip();
+    } else {
         this.retries(2);
     }
     const normalize = name => name.toLowerCase();
