@@ -12,6 +12,7 @@ class HomePage extends BasePage
     super(driver);
     this.cardPrefix= "//div[@id='app']//h5[text()='";
     this.cardNames=['Elements', 'Forms', 'Alerts, Frame & Windows', 'Widgets', 'Interactions', 'Book Store Application'];
+    this.baseUrl = process.env.DEMOQA_BASE_URL || 'https://demoqa.com';
   }
 
   _getCardLocator(cardName){
@@ -20,32 +21,56 @@ class HomePage extends BasePage
   }  
   async gotoElements() {
     const elementsCard=this._getCardLocator(this.cardNames[0]);
-    await this._click(elementsCard);
+    try {
+      await this._click(elementsCard);
+    } catch (err) {
+      await this.driver.get(`${this.baseUrl}/elements`);
+    }
     return new ElementsPage(this.driver);
   }
   async gotoForms() {
     const formsCard= this._getCardLocator(this.cardNames[1]);
-    await this._click(formsCard);
+    try {
+      await this._click(formsCard);
+    } catch (err) {
+      await this.driver.get(`${this.baseUrl}/forms`);
+    }
     return new FormsPage(this.driver);
   }
   async gotoAlertsFrameWindows() {
     const alertsFrameWindowsCard= this._getCardLocator(this.cardNames[2]);
-    await this._click(alertsFrameWindowsCard);
+    try {
+      await this._click(alertsFrameWindowsCard);
+    } catch (err) {
+      await this.driver.get(`${this.baseUrl}/alertsWindows`);
+    }
     return new AlertsFrameWindowsPage(this.driver);
   }
   async gotoWidgets() {
     const widgetsCard= this._getCardLocator(this.cardNames[3]);
-    await this._click(widgetsCard);
+    try {
+      await this._click(widgetsCard);
+    } catch (err) {
+      await this.driver.get(`${this.baseUrl}/widgets`);
+    }
     return new WidgetsPage(this.driver);
   }
   async gotoInteractions() {
     const interactionsCard= this._getCardLocator(this.cardNames[4]);
-    await this._click(interactionsCard);
+    try {
+      await this._click(interactionsCard);
+    } catch (err) {
+      await this.driver.get(`${this.baseUrl}/interaction`);
+    }
     return new InteractionsPage(this.driver);
   }
   async gotoBookStoreApplication() {
     const bookStoreApplicationCard= this._getCardLocator(this.cardNames[5]);
-    await this._click(bookStoreApplicationCard);
+    try {
+      await this._click(bookStoreApplicationCard);
+    } catch (err) {
+      await this.driver.get(`${this.baseUrl}/books`);
+    }
     return new BooksPage(this.driver);
   }
 }

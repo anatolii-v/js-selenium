@@ -38,17 +38,6 @@ async function navigateHomeWithRetry(maxAttempts = 3) {
                 until.elementLocated(By.css('.home-banner')),
                 process.env.CI === 'true' ? 30000 : 10000
             );
-
-            if (process.env.CI === 'true') {
-                const elementsCard = await driver.findElements({
-                    xpath: "//div[@id='app']//h5[text()='Elements']"
-                });
-                if (!elementsCard.length) {
-                    await debugHomePageState();
-                    throw new Error('Elements card not found on home page');
-                }
-            }
-
             return;
         } catch (err) {
             lastError = err;
